@@ -1,0 +1,187 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "Visual3D",
+	"patterns": [
+		{
+			"include": "#comment"
+		},
+		{
+			"include": "#command"
+		},
+		{ "include": "#variable" }
+	],
+	"repository": {
+		"comment": {
+			"patterns": [
+				{
+					"begin": "^(?:\\s*)(!)",
+					"beginCaptures": {
+						"1": {
+							"name": "punctuation.definition.comment.visual3d"
+						}
+					},
+					"patterns": [
+						{
+							"match": "BEGIN_META",
+							"name": "keyword.declaration"
+						},
+						{
+							"match": "(META_CMD_NAME)\\s*=\\s*([\\w_]+)",
+							"captures": {
+								"1": { "name": "keyword.control" },
+								"2": { "name": "entity.name.class" }
+							}
+						},
+						{
+							"match": "(META_PARAM)\\s*=\\s*([\\w_]+)\\s*:\\s(integer|string|float|signal)",
+							"captures": {
+								"1": { "name": "keyword.control" },
+								"2": { "name": "variable.parameter" },
+								"3": { "name": "storage.type"}
+							}
+						},
+						{
+							"match": "END_META",
+							"name": "keyword.declaration"
+						}
+					],
+					"end": "\\n",
+					"name": "comment.line.visual3d"
+				}
+			]
+		},
+		"command": {
+			"patterns": [{
+				"begin": "\\b(Automatic_Gait_Events|Event_Between|Event_Define_Event_Sequence|Event_Explicit|Event_Global_Maximum|Event_Global_Minimum|Event_Import_From_Orthotrak|Event_Maximum|Event_Minimum|Event_Onset|Event_Save_TPR_Signal|Event_Threshold|Event_TPR_File|Event_TPR_Signal|Event_Copy|Event_Rename|Event_Delete|Event_Sequence_Delete|Event_Modify|File_Open|File_Convert_To_CalTester|File_Open_As_CalTester|Import_Analog_ANB_Signals|Import_Analog_Bioware_Signals|Import_Analog_Fsv_Signals|Import_Analog_NDI_Signals|Import_Analog_Noraxon_EMG_Signals|Import_Analog_SON_Signals|Import_Analog_Signals_From_Amti_Ascii_File|Import_Analog_Signals_From_Arsalis_Ascii_File|Import_Analog_Signals_From_DASYLab_Ascii_File|Import_Analog_Signals_From_Delsys_Ascii_File|Import_Analog_Signals_From_Microstrain_Ascii_File|Import_Analog_Signals_From_ADInstruments_Chart_Ascii_File|Import_Data_From_Ascii_File|Import_DATAPAC_Signals|Import_Parameters_From_INI_File|Import_Runtech_Signals|Import_Signals_From_C3D_File|Import_Surrey_Force_Platform_Signals|Merge_Aurora_Files|Import_Xsens_MVNX_Files|Import_KinaTrax_Data|File_Save|File_Save_As|Export_3D_Animation_To_Image|Export_3D_Animation_To_Video|Export_C3DFile|Export_Data_To_Ascii_File|Export_Polygon_C3DFile|Export_To_RDBMS|Exit_Workspace|Recalc|Clear_Recalc_Pipeline|Select_Active_File|File_Close|File_New|File_Rename|Assign_Tags_To_Files|Combine_Tags|Remove_Tags|Remove_CMO_History|Set_Item_Text|Load_CMO_Library|Unload_CMO_Library|Copy_Analog_Descriptions_To_Analog_Labels|Copy_Point_Descriptions_To_Point_Labels|Fix_MAC_Eva7_C3DFile|Modify_Analog_Parameters|Create_Targets_For_LinkModelBased_Rotations_From_Velocity|Create_Targets_For_LinkModelBased_Rotations|Fix_MAC_Eva7_C3DFile|Modify_Analog_Parameters|Modify_C3D_Manufacturer|Modify_Point_Parameters|Modify_Point_Rate|Remove_Prefix_From_Point_Labels|Upsample_Point_Data_To_Analog_Rate|Assign_Segments_To_Force_And_COP|Modify_Force_Platform_Parameters|FP_Auto_Baseline|Modify_One_Force_Platform|Modify_Force_Structure_Parameters|Remove_Segment_Assignment_To_Force_And_COP|Reset_Segment_Assignment_To_Force_And_COP|Set_Force_Platform_Threshold|Update_Force_Corners|Call_MFile|Eval_In_Matlab|Export_Data_To_Matfile|Export_Data_To_Matlab|Get_From_Matlab|Import_Data_From_Matfile|Import_Data_From_Matlab|Put_To_Matlab|Metric_Compute_DFT_Coefficients|Metric_Compute_Gait_Signal_Stats|Metric_Compute_Power_From_DFT_Coefficients|Metric_Compute_Temporal_Distance|Metric_Compute_Volume_of_a_Convex_Hull_Across_Frames|Metric_Cross_Product|Metric_Dot_Product|Metric_Event_Count|Metric_Event_Sequence_Count|Metric_Explicit|Metric_Frames_Between_Events|Metric_From_C3D_Parameter|Metric_Integrate|Metric_Maximum|Metric_Mean|Metric_Median|Metric_Minimum|Metric_Root_Mean_Squared|Metric_Signal_Value_At_Event|Metric_StdDev|Metric_Sum|Metric_Time_Between_Events|Metric_Time_Of_Maximum_From_Event|Metric_Time_Of_Minimum_From_Event|Metric_Time_Of_Global_Maximum_From_Event|Metric_Time_Of_Global_Minimum_From_Event|Metric_Time_Of_Threshold_From_Event|Metric_Compute_Confidence_Ellipse|Metric_To_Fit_Signal_To_Line|Metric_Vector_Between_Events|Remove_Metrics_By_Threshold|Add_Landmark|Add_Landmark_Based_Muscle|Add_Functional_Joint_Landmark|Add_Landmarks_For_Marker_Offset|Add_Landmark_From_Event|Add_Landmark_Wrt_Markers_From_Event|Build_Model|Modify_Landmark|Set_Model_Pose_Algorithm|Set_Model_Global_Optimization_Constraints|Minimize_Knee_Adduction|Set_Model_Metric|Set_Segment_Properties|Set_Subject_Height|Set_Subject_Weight|Set_Subject_Mass|Get_Vicon_Model_Metric|Compute_Distance_Map|Compute_Model_Based_Data|Append_Model_Template|Apply_Model_Template|Assign_Model_File|Assign_Range_For_Subject_Calibration|Associate_Functional_Joints_With_Files|Associate_Digitizing_Landmarks_With_Files|Close_Calibration_File|Create_V3D_Model|Create_Hybrid_Model|Load_Functional_Joints_From_File|Save_Model_Template|Save_Model_Template_XML|End_For_Each|For_Each|Pipeline_Breakpoint|Halt_Pipeline_On_Error|Prompt_For_Pipeline_Parameter_Value|Prompt_For_Multiple_Pipeline_Parameter_Values|Set_Pipeline_Parameter_To_Data_Value|Set_Pipeline_Parameter_From_Expression|Set_Pipeline_Parameter_To_Folder_Path|Set_Pipeline_Parameter_To_List_Of_Files|Set_Pipeline_Parameter_To_List_Of_Signal_Names|Set_Pipeline_Parameter_To_List_Of_Tagged_Files|Set_Pipeline_Parameter_To_List_Of_Tags|Set_Pipeline_Parameter_From_For_Loop|Set_Pipeline_Parameter|Get_Pipeline_Parameter_Count|Get_Pipeline_Parameter_Index_Value|Conditional_Statement|Conditional_Statement_End|Show_Hide_Pipeline_Favorites|Animated_Line|Animated_Sphere|Animated_Surface|Animated_PolyLine|Load_RT_Pipeline|Load_RT_Plugin|Load_RT_Graph_Pipeline|Modify_RTGraph_Settings|Delete_Report_Item|Delete_Report_Page|Export_Graph|Export_Metric_Table|Interactive_Graph_Signals|Interactive_Remove_Graph_Signals|Make_Image_Item|Make_Line_Graph|Add_Graph_Annotation|Make_Text_Annotation|Modify_Line_Graph|Modify_All_Graphs|Overlay_Report|Append_Report_Template|Print_Report|Search_and_Replace_Tags|Set_Report_Page_Title|Open_Report_Template|Average_Filter|Butterworth_Filter|DFT_Filter|Onepass_Filter|Taeger_Kaiser_Energy|FFT_Filter|Bin_Integrate|GCVSPL|Highpass_Filter|Lowpass_Filter|Moving_RMS|Median_Filter|Shift_Frames|Add_Constant_To_Signals|Add_Random_Noise_To_Signals|Add_Signals|Compute_Planar_Angle|Compute_Volume_Of_Chest_Wall|Compute_Volume_Of_A_Convex_Hull|Divide_Signal_By_Constant|Divide_Signals|Evaluate_Expression|First_Derivative|Indefinite_Integral|Signal_Magnitude|Multiply_Signals|Multiply_Signals_By_Constant|Rectify|Subtract_Constant_From_Signals|Subtract_Signals|Second_Derivative|Square_Root|Compute_UD_Power|Distance_Along_Path|Distance_Perpendicular_To_Path|Distance_Parallel_To_Path|Find_Representative_Signal|Global_Normalized_Signal_Mean|Concatenate_Time_Normalized_Signals|Interpolate|Merge_Data|Replace|Set_Data_To_New_Values|Transform_Data_Coordinate_System|Cross_Correlation|Compute_IK_Residuals|Create_Target|Copy_Folder|Delete_Folder|Remove_Signals|Remove_Unlabeled_Points|Remove_Polygon_Signals|Move_Polygon_Signals|Rename_Folder|Rename_Signals|Add_Password_Protection_To_Folder|Remove_Password_Protection_From_Folder|Enter_Password_To_View_Folder_Data|Switch_to_Event_Processing_Mode|Switch_to_Model_Builder_Mode|Switch_to_Report_Mode|Switch_to_Realtime_Mode|Switch_to_CalTester_Mod|Switch_to_FPLoc_Mode|Switch_to_FJ_PostProcessing_Tab|Open_Edit_Dialogs|Set_View_Options|Set_Camera_Perspective|Highlight_Event_Label|Set_Animation_Draw_Size|Set_Laboratory_Coordinate_System|Set_Use_Processed_Analog|Set_Use_Processed_Targets|Set_Use_Processed_Forces|Set_Default_Folders|Call_Script|Call_EXE|Set_View_Processing_Results|Print_Processing_Results|Highlight_Golf_Features|(?i:Hybrid_Segment)|HYBRID_DIGITIZING_POINT|HYBRID_DIGITIZING_WAND|IK_DEGREES_OF_FREEDOM)\\b",
+				"beginCaptures": {
+					"0": {
+						"name": "support.class.visual3d"
+					}
+				},
+				"contentName": "meta.block.visual3d",
+				"patterns": [
+					{ "include": "#comment" },
+					{ "include": "#parameter" },
+					{ "include": "#variable" },
+					{ "include": "#expression_func" },
+					{ "include": "#operator" },
+					{ "include": "#string" },
+					{ "include": "#number" },
+					{ "include": "#amp_interp" }
+				],
+				"end": ";",
+				"endCaptures": { "0": { "name": "punctuation.terminator.visual3d"} }
+			}]
+		},
+		"parameter": {
+			"patterns": [{
+				"match": "^(?:\\s*)(/)([\\w_]+)",
+				"captures": {
+					"1": { "name": "punctuation.definition.parameter.visual3d" },
+					"2": { "name": "variable.parameter" }
+				}
+			}]
+		},
+		"expression_func":{
+			"patterns": [
+				{
+					"begin": "(NOT|ISNAN|pi|int|round|fmod|abs|sign|sqrt|exp|log|log10|rand|length|distance|add|dot|cross|cos|sin|tan|ctan|atan|asin|acos|atan2|vector|list|(?i:unit_vector)|First_Derivative|Second_Derivative|Frame_Count|Metric_Minimum|Metric_Maximum|Metric_Mean|Metric_Median|Metric_StdDev|Metric_InterQuartile|Cross_Correlation|Metric_Sum|Metric_Integrate|sort|Transpose|interpolate|Resolve_Discontinuity|Indefinite_Integral|Point_Relative_To_3Points|Best_Fit_Plane|Best_Fit_Circle|Best_Fit_Sphere|Simple_Linear_Regression|Line_Line_Intersect|Line_Plane_Intersect|Project_Point_On_Plane|Point_Distance_To_Plane|Point_Distance_To_Line|Is_Point_Inside_Polygon|Snip|Spline|Append_As_Components|Append_As_Frames|FORCE|COFP|FREEMOMENT|STRING_TO_UPPER|STRING_TO_LOWER|STRING_LEFT|STRING_RIGHT|STRING_MID|STRING_LENGTH|STRING_FIND)(\\()",
+					"beginCaptures": {
+						"1": { "name": "support.function.visual3d" },
+						"2": { "name": "punctuation.definition.function.begin.visual3d" }
+					},
+					"end": "\\)",
+					"endCaptures": {
+						"0": { "name": "punctuation.definition.function.end.visual3d" }
+					},
+					"patterns": [
+						{ "include": "#expression_func"},
+						{ "include": "#string" },
+						{ "include": "#operator" },
+						{ "include": "#number" }
+					],
+					"name": "meta.function-call.visual3d"
+				}
+			]
+		},
+		"operator": {
+			"patterns": [
+				{
+					"match": "(?:==|<>|><|>=|=>)",
+					"name": "keyword.operator.relation.visual3d"
+				},
+				{
+					"match": "(?:\\*|/|\\^|\\||\\+|-)",
+					"name": "keyword.operator.arithmetic.visual3d"
+				}
+			]
+		},
+		"number": {
+			"patterns": [
+				{
+					"match": "(?<=[=+-<>*/&^()\\[\\]])([0-9]+\\.?[0-9]*|\\.[0-9]+)\\b",
+					"name": "constant.numeric.visual3d"
+				},
+				{
+					"match": "\\b(TRUE|FALSE)\\b",
+					"name": "constant.language.visual3d"
+				},
+				{
+					"match": "\\b(GLOBAL|ORIGINAL|PROCESSED|EVENT_LABEL|ANALOG|TARGET|PRESSURE|PARAMETERS|ROTATION|FORCE|COFP|FREEMOMENT|METRIC|KINETIC_KINEMATIC|LINK_MODEL_BASED|DERIVED|ALL_FILES|LANDMARK)\\b",
+					"name": "constant.global.visual3d"
+				}
+			]
+		},
+		"string": {
+			"patterns": [{
+				"name": "string.quoted.double.visual3d",
+				"begin": "\"",
+				"beginCaptures": { "0": { "name": "punctuation.definition.string.begin.visual3d" } },
+				"end": "\"",
+				"endCaptures": { "0": { "name": "punctuation.definition.string.end.visual3d" } },
+				"contentName": "meta.string",
+				"patterns": [
+					{ "include": "#amp_interp" }
+				]
+			}]
+		},
+		"amp_interp": {
+			"patterns": [
+				{
+					"begin": "&(?=::([[:word:]_]+))",
+					"beginCaptures": {
+						"0": { "name": "punctuation.definition.interpolation.begin.visual3d" }
+					},
+					"end": "((&)|[^\\w_:]|\\n)",
+					"endCaptures": {
+						"2": { "name": "punctuation.definition.interpolation.end.visual3d" }
+					},
+					"name": "variable.interpolation.visual3d",
+					"patterns": [
+						{"include": "#variable"}
+					]
+				},
+				{
+					"begin": "&:&:(?=&::([[:word:]_]+))",
+					"beginCaptures": {
+						"0": { "name": "punctuation.definition.interpolation.begin.visual3d" }
+					},
+					"end": "(?<!:)((&)|[^\\w_:]|\\n)",
+					"endCaptures": {
+						"2": { "name": "punctuation.definition.interpolation.end.visual3d" }
+					},
+					"name": "variable.interpolation.visual3d",
+					"patterns": [
+						{ "include": "#amp_interp" },
+						{"include": "#variable"}
+					]
+				}
+			]
+		},
+		"variable": {
+			"match": "(?>::)([[:word:]_]+)",
+			"name": "variable.other.visual3d"
+		}
+	},
+	"scopeName": "source.visual3d"
+}

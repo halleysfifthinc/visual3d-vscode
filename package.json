@@ -1,0 +1,48 @@
+{
+    "name": "visual3d-lang",
+    "displayName": "Visual3D Command Language",
+    "description": "Syntax highlighting for Visual3D pipeline commands",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.65.0"
+    },
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/halleysfifthinc/visual3d-vscode.git"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [
+            {
+                "id": "visual3d",
+                "aliases": [
+                    "Visual3D",
+                    "visual3d"
+                ],
+                "extensions": [
+                    ".v3s",
+                    ".mdh",
+                    ".v3m",
+                    ".vik"
+                ],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "visual3d",
+                "scopeName": "source.visual3d",
+                "path": "./syntaxes/visual3d.tmLanguage.json"
+            }
+        ]
+    },
+    "scripts": {
+        "package": "vsce package"
+    },
+    "devDependencies": {
+        "vsce": "^2.7.0"
+    }
+}
