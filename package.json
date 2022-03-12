@@ -2,7 +2,7 @@
     "name": "visual3d-lang",
     "displayName": "Visual3D Language",
     "description": "Syntax highlighting for the Visual3D command language",
-    "version": "0.0.2",
+    "version": "0.1.0",
     "engines": {
         "vscode": "^1.65.0"
     },
